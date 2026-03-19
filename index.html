@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>BookMatch</title>
+<title>LivroCerto</title>
 
 <style>
 body {
@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    background: white;
+    background: rgb(255, 213, 249);
     padding: 20px;
     border-radius: 15px;
     max-width: 400px;
@@ -35,27 +35,47 @@ select {
     padding: 5px;
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
-    <h1>📚 BookMatch</h1>
+    <h1>📚 LivroCerto</h1>
     <p>O livro certo, no momento certo.</p>
 
     <h3>Escolha suas preferências:</h3>
+    <button onclick="recomendar()">🎲 Me surpreenda</button>
 
     <select id="genero">
-        <option value="romance">Romance</option>
-        <option value="aventura">Aventura</option>
-        <option value="suspense">Suspense</option>
+        <option value="romance">Romance 💖</option>
+        <option value="aventura">Aventura ⚡</option>
+        <option value="suspense">Suspense 🔥</option>
+        <option value="fantasia">Fantasia 🌟</option>
+        <option value="romantasia">Romantasia 💫</option>
+        <option value="distopia">Distopia 🏙️</option>
     </select>
 
     <select id="humor">
-        <option value="feliz">Feliz</option>
-        <option value="triste">Triste</option>
-        <option value="animado">Animado</option>
+        <option value="feliz">Feliz 😊</option>
+        <option value="triste">Triste 😢</option>
+        <option value="animado">Animado 🔥</option>
+        <option value="drama">Drama 🎭</option>
+        <option value="engraçado">Engraçado 😂</option>
+    </select>
+
+    <select id="tipo">
+        <option value="friends">Friends to lovers 🤍</option>
+        <option value="enemies">Enemies to lovers 🔥</option>
+        <option value="fake">Fake dating 💍</option>
+        <option value="slow">Slow burn 🕯️</option>
+        <option value="grumpy">Grumpy x Sunshine ☀️</option>
+        <option value="forced">Forced proximity 🚪</option>
+        <option value="queer">Queer 🌈</option>
+        <option value="age">Age gap ⏳</option>
+        <option value="forbidden">Forbidden love 🚫</option>
+        <option value="plot">Plot twist 🕵️</option>
+        <option value="tragic">Tragic romance 💔</option>
+        <option value="none">Sem trope específico 📚</option>
     </select>
 
     <br><br>
@@ -67,21 +87,70 @@ select {
 
 <script>
 function recomendar() {
+
     let genero = document.getElementById("genero").value;
     let humor = document.getElementById("humor").value;
+    let tipo = document.getElementById("tipo").value;
+
+    let livros = [
+        { genero:"romance", humor:"triste", tipo:"friends", nome:"Binding 13 💔", autor:"Chloe Walsh", musica:"She Will Be Loved - Maroon 5" },
+        { genero:"romance", humor:"triste", tipo:"friends", nome:"Saving 6 💔", autor:"Chloe Walsh", musica:"Knockin’ on Heaven’s Door" },
+        { genero:"fantasia", humor:"suspense", tipo:"forbidden", nome:"Caraval 🎭✨", autor:"Stephanie Garber", musica:"Carousel - Melanie Martinez" },
+        { genero:"romantasia", humor:"drama", tipo:"forbidden", nome:"Era Uma Vez um Coração Partido 💔🏹", autor:"Stephanie Garber", musica:"The Archer - Taylor Swift" },
+        { genero:"distopia", humor:"animado", tipo:"none", nome:"Maze Runner 🏃‍♂️🌿", autor:"James Dashner", musica:"Run Boy Run" },
+        { genero:"fantasia", humor:"drama", tipo:"enemies", nome:"O Príncipe Cruel 👑🖤", autor:"Holly Black", musica:"Fairytale" },
+        { genero:"romance", humor:"feliz", tipo:"fake", nome:"Melhor do que nos Filmes 🎬💖", autor:"Lynn Painter", musica:"In Between - Gracie Abrams" },
+        { genero:"romance", humor:"engraçado", tipo:"friends", nome:"De férias com você 🏖️💖", autor:"Emily Henry", musica:"Forever Your Girl - Paula Abdul" },
+        { genero:"distopia", humor:"drama", tipo:"enemies", nome:"Estilhaça-me 💔🏙️", autor:"Tahereh Mafi", musica:"Skyfall - Adele" },
+        { genero:"fantasia", humor:"drama", tipo:"none", nome:"Trono de Vidro 👑💎", autor:"Sarah J. Maas", musica:"Power Over Me - Dermot Kennedy" },
+        { genero:"suspense", humor:"triste", tipo:"plot", nome:"Mentirosos 🤍🔒", autor:"E. Lockhart", musica:"The Night We Met - Lord Huron" },
+        { genero:"suspense", humor:"animado", tipo:"plot", nome:"A Empregada 🧹🔪", autor:"Freida McFadden", musica:"I Did Something Bad - Taylor Swift" },
+        { genero:"suspense", humor:"triste", tipo:"plot", nome:"Nunca Minta 🧠❄️", autor:"Freida McFadden", musica:"Control - Halsey" },
+        { genero:"romance", humor:"triste", tipo:"tragic", nome:"Mil Beijos de Garoto 💋💔", autor:"Tillie Cole", musica:"Another Love - Tom Odell" },
+        { genero:"romance", humor:"triste", tipo:"queer", nome:"A Canção de Aquiles 🏛️💔", autor:"Madeline Miller", musica:"Heather - Conan Gray" },
+        { genero:"suspense", humor:"triste", tipo:"plot", nome:"Verity 🔥", autor:"Colleen Hoover", musica:"Daddy Issues - The Neighbourhood" },
+        { genero:"aventura", humor:"animado", tipo:"enemies", nome:"Corte de Espinhos e Rosas 🌹✨", autor:"Sarah J. Maas", musica:"Middle of the Night - Elley Duhé" },
+        { genero:"romance", humor:"feliz", tipo:"age", nome:"Os Sete Maridos de Evelyn Hugo 🎬", autor:"Taylor Jenkins Reid", musica:"Young and Beautiful - Lana Del Rey" },
+        { genero:"romance", humor:"triste", tipo:"queer", nome:"Os Dois Morrem no Final ⏳💔", autor:"Adam Silvera", musica:"Until I Found You - Stephen Sanchez" }
+    ];
+
+    let recomendados = [];
     let resultado = "";
 
-    if (genero === "romance" && humor === "triste") {
-        resultado = "📖 Livro: Como Eu Era Antes de Você 💔<br>🎵 Música: All Too Well";
-    } 
-    else if (genero === "aventura" && humor === "animado") {
-        resultado = "📖 Livro: Percy Jackson ⚡<br>🎵 Música: Can't Hold Us";
-    } 
-    else if (genero === "suspense") {
-        resultado = "📖 Livro: A Garota no Trem 🚆<br>🎵 Música: Lovely";
-    } 
-    else {
-        resultado = "📖 Livro: Orgulho e Preconceito 🌸<br>🎵 Música: Enchanted";
+    // busca completa
+    for (let i = 0; i < livros.length; i++) {
+        if (
+            livros[i].genero === genero &&
+            livros[i].humor === humor &&
+            livros[i].tipo === tipo
+        ) {
+            recomendados.push(livros[i]);
+        }
+    }
+
+    // se encontrou resultado exato
+    if (recomendados.length > 0) {
+        let escolhido = recomendados[Math.floor(Math.random() * recomendados.length)];
+        resultado = `
+        📖 ${escolhido.nome}<br>
+        ✍️ ${escolhido.autor}<br>
+        🎵 ${escolhido.musica}
+        `;
+    } else {
+        
+        for (let i = 0; i < livros.length; i++) {
+            if (livros[i].genero === genero) {
+                recomendados.push(livros[i]);
+            }
+        }
+
+        for (let i = 0; i < recomendados.length; i++) {
+            resultado += `
+            📖 ${recomendados[i].nome}<br>
+            ✍️ ${recomendados[i].autor}<br>
+            🎵 ${recomendados[i].musica}<br><br>
+            `;
+        }
     }
 
     document.getElementById("resultado").innerHTML = resultado;
