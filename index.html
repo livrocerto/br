@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>BookMatch</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f1ea;
+    text-align: center;
+    padding: 30px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+button {
+    background-color: #c8a97e;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+select {
+    margin: 10px;
+    padding: 5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1>📚 BookMatch</h1>
+    <p>O livro certo, no momento certo.</p>
+
+    <h3>Escolha suas preferências:</h3>
+
+    <select id="genero">
+        <option value="romance">Romance</option>
+        <option value="aventura">Aventura</option>
+        <option value="suspense">Suspense</option>
+    </select>
+
+    <select id="humor">
+        <option value="feliz">Feliz</option>
+        <option value="triste">Triste</option>
+        <option value="animado">Animado</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="recomendar()">Descobrir livro</button>
+
+    <h3 id="resultado"></h3>
+</div>
+
+<script>
+function recomendar() {
+    let genero = document.getElementById("genero").value;
+    let humor = document.getElementById("humor").value;
+    let resultado = "";
+
+    if (genero === "romance" && humor === "triste") {
+        resultado = "📖 Livro: Como Eu Era Antes de Você 💔<br>🎵 Música: All Too Well";
+    } 
+    else if (genero === "aventura" && humor === "animado") {
+        resultado = "📖 Livro: Percy Jackson ⚡<br>🎵 Música: Can't Hold Us";
+    } 
+    else if (genero === "suspense") {
+        resultado = "📖 Livro: A Garota no Trem 🚆<br>🎵 Música: Lovely";
+    } 
+    else {
+        resultado = "📖 Livro: Orgulho e Preconceito 🌸<br>🎵 Música: Enchanted";
+    }
+
+    document.getElementById("resultado").innerHTML = resultado;
+}
+</script>
+
+</body>
+</html>
